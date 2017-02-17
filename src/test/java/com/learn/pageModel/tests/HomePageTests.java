@@ -27,6 +27,7 @@ public class HomePageTests {
     public void setUp(){
         driver = new ChromeDriver() ;
       //  driver.get("http://google.com");
+        System.setProperty("webdriver.chrome.driver","C:\\Selenium\\Downloads\\chromedriver_win32\\chromedriver.exe");
         driver.get("http://automationpractice.com/index.php");
 
         Toolkit toolkit = Toolkit.getDefaultToolkit();
