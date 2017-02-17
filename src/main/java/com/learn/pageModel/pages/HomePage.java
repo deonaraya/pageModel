@@ -7,7 +7,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
@@ -15,13 +14,12 @@ import java.util.List;
 /**
  * Created by chandrad on 2/14/17.
  */
-public class HomePage {
+public class HomePage extends BasePage {
 
-    WebDriver driver ;
     WebDriverWait wait ;
 
     public HomePage(WebDriver driver) {     // below actions needs to be executed immediately after the object is created so inside constructor .
-        this.driver = driver;               // a value of driver from testClass (where the object was created ) is propogating here ...
+        super(driver);              // a value of driver from testClass (where the object was created ) is propogating here ...
         PageFactory.initElements(driver,this);     // This line initializes all the @FindBy annotated WebElements ...
                                                     // WebEleemts get initilaized with a LAZY PROXY .. .and they get actual value when a method called upon them .
     }
@@ -110,10 +108,10 @@ public class HomePage {
     // spare this method as this is a common method used in  the interaction ...
     // this method will never be called from out tests...
     // This is a page level method only
-    public void waitForElement(WebElement element){
-        wait = new WebDriverWait(driver,10) ;
-        wait.until(ExpectedConditions.visibilityOf(element)) ;
-    }
+//    public void waitForElement(WebElement element){
+//        wait = new WebDriverWait(driver,10) ;
+//        wait.until(ExpectedConditions.visibilityOf(element)) ;
+//    }
 
 
 // since the method is navigational in nature and taking us to AddToCartPopUp Page we are retruning the same
@@ -158,6 +156,8 @@ public class HomePage {
             System.out.println(name.getText());
         }
         LOGGER.info("<< product names are successfully printed by acessing the list >>");
+
+
 
         return this ;
     }

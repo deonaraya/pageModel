@@ -69,8 +69,8 @@ public class HomePageTests {
 
 
         // Method Chaining .....
-        HomePage page = new HomePage(driver);
 
+        HomePage page = new HomePage(driver);
         page.getProductNames().getProductNamesFromList().addProductToCart().
                 waitForPageLoad().verifyProductAdded().navToCartSummary().waitForPageLoad().navToAuthentiation();
 

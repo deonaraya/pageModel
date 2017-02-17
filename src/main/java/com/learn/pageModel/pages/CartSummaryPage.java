@@ -6,23 +6,21 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 /**
  * Created by chandrad on 2/14/17.
  */
-public class CartSummaryPage {
+public class CartSummaryPage extends BasePage {
 
 
-    WebDriver driver ;
     WebDriverWait wait ;
 
     private static final Logger LOGGER = LogManager.getLogger(CartSummaryPage.class) ;
 
 
     public CartSummaryPage(WebDriver driver) {
-        this.driver = driver;
+        super(driver);
         PageFactory.initElements(driver,this);
     }
 
@@ -35,10 +33,10 @@ public class CartSummaryPage {
     private WebElement proceedToCheckoutBtton ;
 
 
-    private void waitForElement(WebElement element){
-        wait = new WebDriverWait(driver,10) ;
-        wait.until(ExpectedConditions.visibilityOf(element)) ;
-    }
+//    public void waitForElement(WebElement element){
+//        wait = new WebDriverWait(driver,10) ;
+//        wait.until(ExpectedConditions.visibilityOf(element)) ;
+//    }
 
     // mon navigational method
     public CartSummaryPage waitForPageLoad(){
