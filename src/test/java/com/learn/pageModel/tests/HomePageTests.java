@@ -25,7 +25,6 @@ public class HomePageTests {
 //    @FindBy(name = "btnK")
 //    private WebElement elementFIndBy ;
 
-
     @Parameters("browser")
     @BeforeMethod
     public void setUp(String browser){
