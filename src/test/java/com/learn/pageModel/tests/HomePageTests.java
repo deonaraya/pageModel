@@ -30,7 +30,6 @@ public class HomePageTests {
     @BeforeMethod
     public void setUp(String browser){
 
-
         if (browser.equalsIgnoreCase("firefox"))
         {
             driver = new FirefoxDriver();
@@ -49,6 +48,18 @@ public class HomePageTests {
 
         driver.get("http://automationpractice.com/index.php");
     }
+
+//    @BeforeMethod
+//    public void setUp(){
+//        driver = new ChromeDriver() ;
+//      //  driver.get("http://google.com");
+//        driver.get("http://automationpractice.com/index.php");
+//
+//        Toolkit toolkit = Toolkit.getDefaultToolkit();
+//        int Width = (int) toolkit.getScreenSize().getWidth();
+//        int Height = (int) toolkit.getScreenSize().getHeight();
+//        driver.manage().window().setSize(new org.openqa.selenium.Dimension(Width, Height));
+//    }
 
 
 
@@ -96,11 +107,14 @@ public class HomePageTests {
     public void testTwo(){
         HomePage page = new HomePage(driver);
         page.getProductNamesFromList();
+
+        page.getProductNames().getProductNamesFromList().addProductToCart()
+                .verifyProductAdded().navToCartSummary().navToAuthentiation();
+
     }
 
     @AfterMethod
     public void tearDown(){
-
         driver.quit();
     }
 }

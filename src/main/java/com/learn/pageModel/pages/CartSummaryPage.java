@@ -43,21 +43,15 @@ public class CartSummaryPage extends BasePage {
     private void waitForPageLoad(){
         LOGGER.info(" << waiting for cartsummaryPage up to load successfully >>");
         waitForElement(cartSummaryHeader);
-        //return new CartSummaryPage(driver);
-        // return this ;
     }
 
 
-    public void navToAuthentiation(){
+    public AuthenticationPage navToAuthentiation(){
 
         LOGGER.info(" << clicked on proceed to navigate to Authentication Page >>");
         proceedToCheckoutBtton.click();
 
-        try {
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        return new AuthenticationPage(driver);
 
     }
 }

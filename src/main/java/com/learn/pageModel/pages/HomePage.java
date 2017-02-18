@@ -21,7 +21,8 @@ public class HomePage extends BasePage {
     public HomePage(WebDriver driver) {     // below actions needs to be executed immediately after the object is created so inside constructor .
         super(driver);              // a value of driver from testClass (where the object was created ) is propogating here ...
         PageFactory.initElements(driver,this);     // This line initializes all the @FindBy annotated WebElements ...
-                                                    // WebEleemts get initilaized with a LAZY PROXY .. .and they get actual value when a method called upon them .
+      //  waitForPageLoad(); // WebEleemts get initilaized with a LAZY PROXY .. .and they get actual value when a method called upon them .
+
     }
 
     /*content of this JAVA class should be :
@@ -69,7 +70,6 @@ public class HomePage extends BasePage {
     // if Navigational Method : return the page you are navigating to ..
     // if non navigational return yourself ....
 
-
     @FindBy(xpath = "//ul[@id='homefeatured']/li[1]//div[@class='right-block']//a[@class='product-name']")
     private WebElement productName1 ;
 
@@ -105,6 +105,12 @@ public class HomePage extends BasePage {
     private WebElement addToCartButton4 ;
 
 
+    private void waitForPageLoad(){
+        LOGGER.info(" << waiting for HomePage up to load successfully >>");
+        waitForElement(cataogHeader);
+    }
+
+
     // spare this method as this is a common method used in  the interaction ...
     // this method will never be called from out tests...
     // This is a page level method only
@@ -118,7 +124,6 @@ public class HomePage extends BasePage {
     public AddToCartPopUp addProductToCart(){
         LOGGER.info("<< Mouse Hover to be performed before clicking on Add To Cart Button >>");
         LOGGER.info("<< Performing Mouse Hover  >>");
-
 
         Actions action = new Actions(driver);
         action.moveToElement(productContainer3).build().perform();
@@ -156,8 +161,6 @@ public class HomePage extends BasePage {
             System.out.println(name.getText());
         }
         LOGGER.info("<< product names are successfully printed by acessing the list >>");
-
-
 
         return this ;
     }

@@ -59,19 +59,16 @@ public class AddToCartPopUp extends BasePage {
 
     // i do not want this method to be called from outside class , hence private..
     // I do not want chaining on this method so void ///
-    private void waitForPageLoad(){
+    private void waitForPageLoad() {
         LOGGER.info(" << waiting for addtocartPop up to load successfully >>");
         waitForElement(cartSuccessMessage);
-      //  return new AddToCartPopUp(driver);
-       // return this ;
+        //  return new AddToCartPopUp(driver);
     }
 
     public AddToCartPopUp verifyProductAdded(){
 
-        LOGGER.info(" << verify if the cart success message is as per  expected  >>");
-
+        LOGGER.info(" << verify if the cart success message is as per expected  >>");
         Assert.assertEquals(cartSuccessMessage.getText(),"Product successfully added to your shopping cart");
-
         return this;
     }
 
