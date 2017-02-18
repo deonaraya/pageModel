@@ -27,6 +27,7 @@ public class AddToCartPopUp extends BasePage {
     public AddToCartPopUp(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver,this);
+        waitForPageLoad();
     }
 
     // locator to demonstrate how we navigate backwards in the dom ... child to direct parent ..
@@ -55,10 +56,13 @@ public class AddToCartPopUp extends BasePage {
 //    }
 
 // mon navigational method
-    public AddToCartPopUp waitForPageLoad(){
+
+    // i do not want this method to be called from outside class , hence private..
+    // I do not want chaining on this method so void ///
+    private void waitForPageLoad(){
         LOGGER.info(" << waiting for addtocartPop up to load successfully >>");
         waitForElement(cartSuccessMessage);
-        return new AddToCartPopUp(driver);
+      //  return new AddToCartPopUp(driver);
        // return this ;
     }
 

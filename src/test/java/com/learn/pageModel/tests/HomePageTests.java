@@ -3,8 +3,10 @@ package com.learn.pageModel.tests;
 import com.learn.pageModel.pages.HomePage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import java.awt.*;
@@ -23,18 +25,32 @@ public class HomePageTests {
 //    @FindBy(name = "btnK")
 //    private WebElement elementFIndBy ;
 
-    @BeforeMethod
-    public void setUp(){
-        driver = new ChromeDriver() ;
-      //  driver.get("http://google.com");
-        driver.get("http://automationpractice.com/index.php");
 
-        Toolkit toolkit = Toolkit.getDefaultToolkit();
+    @Parameters("browser")
+    @BeforeMethod
+    public void setUp(String browser){
+
+
+        if (browser.equalsIgnoreCase("firefox"))
+        {
+            driver = new FirefoxDriver();
+            driver.manage().window().maximize();
+        }
+        else if (browser.equalsIgnoreCase("chrome"))
+        {
+            //   System.setProperty("webdriver.driver.chrome" , "path");
+            driver = new ChromeDriver();
+            Toolkit toolkit = Toolkit.getDefaultToolkit();
         int Width = (int) toolkit.getScreenSize().getWidth();
         int Height = (int) toolkit.getScreenSize().getHeight();
         driver.manage().window().setSize(new org.openqa.selenium.Dimension(Width, Height));
 
+        }
+
+        driver.get("http://automationpractice.com/index.php");
     }
+
+
 
 
 //    @Test
@@ -71,10 +87,15 @@ public class HomePageTests {
         // Method Chaining .....
 
         HomePage page = new HomePage(driver);
-        page.getProductNames().getProductNamesFromList().addProductToCart().
-                waitForPageLoad().verifyProductAdded().navToCartSummary().waitForPageLoad().navToAuthentiation();
+        page.addProductToCart()
+                .verifyProductAdded().navToCartSummary().navToAuthentiation();
 
+    }
 
+    @Test
+    public void testTwo(){
+        HomePage page = new HomePage(driver);
+        page.getProductNamesFromList();
     }
 
     @AfterMethod

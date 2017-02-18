@@ -22,6 +22,7 @@ public class CartSummaryPage extends BasePage {
     public CartSummaryPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver,this);
+        waitForPageLoad();
     }
 
 
@@ -39,10 +40,10 @@ public class CartSummaryPage extends BasePage {
 //    }
 
     // mon navigational method
-    public CartSummaryPage waitForPageLoad(){
+    private void waitForPageLoad(){
         LOGGER.info(" << waiting for cartsummaryPage up to load successfully >>");
         waitForElement(cartSummaryHeader);
-        return new CartSummaryPage(driver);
+        //return new CartSummaryPage(driver);
         // return this ;
     }
 
