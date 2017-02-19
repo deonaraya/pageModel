@@ -1,20 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Suite" parallel="tests">
+<suite name="Suite" parallel="false">
+
+    <listeners>
+        <listener class-name="com.learn.pageModel.common.TestListener"/>
+    </listeners>
 
 
     <test name="Testfirefox">
-        <parameter name="browser" value="firefox"></parameter>
-        <classes>
-            <class name="com.learn.pageModel.tests.HomePageTests"/>
-        </classes>
-    </test> <!-- Test -->
-
-    <test name="Testchrome">
         <parameter name="browser" value="chrome"></parameter>
         <classes>
             <class name="com.learn.pageModel.tests.HomePageTests"/>
         </classes>
     </test> <!-- Test -->
+
+    <!--<test name="Testchrome">-->
+        <!--<parameter name="browser" value="chrome"></parameter>-->
+        <!--<classes>-->
+            <!--<class name="com.learn.pageModel.tests.HomePageTests"/>-->
+        <!--</classes>-->
+    <!--</test> &lt;!&ndash; Test &ndash;&gt;-->
 
 </suite> <!-- Suite -->

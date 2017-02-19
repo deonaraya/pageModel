@@ -68,7 +68,7 @@ public class AddToCartPopUp extends BasePage {
     public AddToCartPopUp verifyProductAdded(){
 
         LOGGER.info(" << verify if the cart success message is as per expected  >>");
-        Assert.assertEquals(cartSuccessMessage.getText(),"Product successfully added to your shopping cart");
+        Assert.assertEquals(cartSuccessMessage.getText(),"Product successfully added to your shopping cart to error");
         return this;
     }
 

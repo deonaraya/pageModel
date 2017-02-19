@@ -107,9 +107,6 @@ public class HomePageTests {
         HomePage page = new HomePage(driver);
         page.getProductNamesFromList();
 
-        page.getProductNames().getProductNamesFromList().addProductToCart()
-                .verifyProductAdded().navToCartSummary().navToAuthentiation();
-
     }
 
     @AfterMethod
