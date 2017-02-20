@@ -39,6 +39,9 @@ public class AuthenticationPage extends BasePage {
     @FindBy(id = "SubmitLogin")
     private WebElement login ;
 
+    @FindBy(xpath = "//li[text()='Authentication failed.']")
+    private WebElement loginErrorMessage ;
+
     private void waitForPageLoad(){
         LOGGER.info(" << waiting for Authentication Page to load successfully >>");
         waitForElement(signInHeader);
@@ -54,6 +57,14 @@ public class AuthenticationPage extends BasePage {
 
         LOGGER.info("<< clicked on submit button for logging in >>");
         login.click();
+
+//        if (isSignInFailed())
+//        {
+//            LOGGER.error("Sign in has failed due to incorrect credentials");
+//            return new BillingAddressPage(driver) ;
+//        }
+//
+//        else
         return new BillingAddressPage(driver);
     }
 
@@ -61,6 +72,12 @@ public class AuthenticationPage extends BasePage {
         createEmailTextField.sendKeys(createEmail);
         createAccount.click();
         return new RegistrationPage(driver);
+    }
+
+    // to implement the sign in fail logic
+
+    public boolean isSignInFailed(){
+        return loginErrorMessage.isDisplayed();
     }
 
 
