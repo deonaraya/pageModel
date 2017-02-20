@@ -32,5 +32,14 @@ public class BillingAddressPage extends BasePage {
         waitForElement(addressSelect);
     }
 
+    public ShippingPage address(){
+
+        LOGGER.info("<< Select Address and Proceed to Checkout >>");
+        addressSelect.isSelected();
+        checkoutStep3.click();
+
+        return new ShippingPage(driver);
+
+    }
 
 }

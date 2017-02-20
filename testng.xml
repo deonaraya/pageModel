@@ -7,18 +7,18 @@
     </listeners>
 
 
-    <test name="Testfirefox">
+    <!--<test name="Testfirefox">-->
+        <!--<parameter name="browser" value="firefox"></parameter>-->
+        <!--<classes>-->
+            <!--<class name="com.learn.pageModel.tests.HomePageTests"/>-->
+        <!--</classes>-->
+    <!--</test> &lt;!&ndash; Test &ndash;&gt;-->
+
+    <test name="Testchrome">
         <parameter name="browser" value="chrome"></parameter>
         <classes>
             <class name="com.learn.pageModel.tests.HomePageTests"/>
         </classes>
     </test> <!-- Test -->
-
-    <!--<test name="Testchrome">-->
-        <!--<parameter name="browser" value="chrome"></parameter>-->
-        <!--<classes>-->
-            <!--<class name="com.learn.pageModel.tests.HomePageTests"/>-->
-        <!--</classes>-->
-    <!--</test> &lt;!&ndash; Test &ndash;&gt;-->
 
 </suite> <!-- Suite -->

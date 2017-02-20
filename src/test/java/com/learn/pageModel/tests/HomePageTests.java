@@ -36,7 +36,7 @@ public class HomePageTests {
         }
         else if (browser.equalsIgnoreCase("chrome"))
         {
-            //   System.setProperty("webdriver.driver.chrome" , "path");
+            System.setProperty("webdriver.chrome.driver","C:\\Selenium\\Downloads\\chromedriver_win32\\chromedriver.exe");
             driver = new ChromeDriver();
             Toolkit toolkit = Toolkit.getDefaultToolkit();
         int Width = (int) toolkit.getScreenSize().getWidth();
@@ -75,7 +75,7 @@ public class HomePageTests {
 //
 //    }
 
-    @Test
+   // @Test
     public void getNameTest(){
 
 //        HomePage page1 = new HomePage(driver);
@@ -98,19 +98,19 @@ public class HomePageTests {
 
         HomePage page = new HomePage(driver);
         page.addProductToCart()
-                .verifyProductAdded().navToCartSummary().navToAuthentiation();
-
+                .verifyProductAdded().navToCartSummary().navToAuthentiation().signIn("unique1Email@mailinator.com","anirudh10");
     }
 
     @Test
     public void testTwo(){
         HomePage page = new HomePage(driver);
-        page.getProductNamesFromList();
+        page.getProductNamesFromList().addProductToCart().navToCartSummary().navToAuthentiation().
+                signIn("unique1Email@mailinator.com","anirudh10").address().shipping().paymethod();
 
     }
 
     @AfterMethod
     public void tearDown(){
-        driver.quit();
+        //driver.quit();
     }
 }
