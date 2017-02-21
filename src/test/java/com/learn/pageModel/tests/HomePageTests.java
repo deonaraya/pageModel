@@ -1,26 +1,15 @@
 package com.learn.pageModel.tests;
 
-import com.learn.pageModel.common.CommonMethods;
+import com.learn.pageModel.common.DriverManager;
 import com.learn.pageModel.pages.HomePage;
-import org.apache.commons.io.FileUtils;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
-import org.openqa.selenium.WebDriver;
-import org.testng.ITestResult;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
-
-import java.io.File;
-import java.io.IOException;
 
 /**
  * Created by chandrad on 2/15/17.
  */
 public class HomePageTests {
 
-    WebDriver driver ;
+//    WebDriver driver ;
 
 //    int i;
 //    String qty ;
@@ -30,12 +19,12 @@ public class HomePageTests {
 //    private WebElement elementFIndBy ;
 
 
-    @Parameters("browser")
-    @BeforeMethod
-    public void setUp1(String browser){
-        driver = CommonMethods.getDriverInstance(browser);
-        driver.get("http://automationpractice.com/index.php");
-    }
+//    @Parameters("browser")
+//    @BeforeMethod
+//    public void setUp1(String browser){
+//        driver = CommonMethods.getDriverInstance(browser);
+//        driver.get("http://automationpractice.com/index.php");
+//    }
 
 //    @Parameters("browser")
 //    @BeforeMethod
@@ -108,45 +97,32 @@ public class HomePageTests {
 
         // Method Chaining .....
 
-        HomePage page = new HomePage(driver);
+        HomePage page = new HomePage(DriverManager.getDriver());
         page.addProductToCart()
                 .verifyProductAdded().navToCartSummary().navToAuthentiation().signIn("unique1Email@mailinator.com","anirudh10");
     }
 
     @Test
     public void testTwo(){
-        HomePage page = new HomePage(driver);
+        HomePage page = new HomePage(DriverManager.getDriver());
         page.getProductNamesFromList().addProductToCart().navToCartSummary().navToAuthentiation().
                 signIn("unique1Email@mailinator.com","anirudh10").address().shipping().paymethod();
     }
 
 
-    private  void captureScreenshot() throws IOException {
-
-        //syntax for taking screenshot
-        TakesScreenshot ts = (TakesScreenshot)driver ;
-
-        File src = ts.getScreenshotAs(OutputType.FILE) ; // converts the bibary of screenshot in a file and store it in the variable called src
-        String dest = "./screen/" + System.currentTimeMillis() +".png" ;
-
-
-        File destination = new File(dest) ;
-        FileUtils.copyFile(src,destination ) ;
-    }
-
-    @AfterMethod
-    public void tearDown(ITestResult result){
-
-        if (result.getStatus()==ITestResult.FAILURE)
-        {
-            try {
-                captureScreenshot();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-        }
-
-        driver.quit();
-    }
+//    @AfterMethod
+//    public void tearDown(ITestResult result){
+//
+//        if (result.getStatus()==ITestResult.FAILURE)
+//        {
+//            try {
+//                captureScreenshot();
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
+//
+//        }
+//
+//    //    driver.quit();
+//    }
 }

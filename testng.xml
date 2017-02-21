@@ -15,9 +15,9 @@
     <!--</test> &lt;!&ndash; Test &ndash;&gt;-->
 
     <test name="Testchrome">
-        <parameter name="browser" value="chrome"></parameter>
+        <parameter name="browser" value="${browser}"></parameter>
         <classes>
-            <class name="com.learn.pageModel.tests.HomePageTests"/>
+            <class name="com.learn.pageModel.tests.ListenerCheck"/>
         </classes>
     </test> <!-- Test -->
 

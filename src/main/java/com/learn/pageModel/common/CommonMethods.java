@@ -1,10 +1,15 @@
 package com.learn.pageModel.common;
 
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 import java.awt.*;
+import java.io.File;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -44,5 +49,18 @@ public class CommonMethods {
         }
 
         return driver ;
+    }
+
+    public static void captureScreenshot() throws IOException {
+
+        //syntax for taking screenshot
+        TakesScreenshot ts = (TakesScreenshot)DriverManager.getDriver() ;
+
+        File src = ts.getScreenshotAs(OutputType.FILE) ; // converts the bibary of screenshot in a file and store it in the variable called src
+        String dest = "./screen/" + System.currentTimeMillis() +".png" ;
+
+
+        File destination = new File(dest) ;
+        FileUtils.copyFile(src,destination ) ;
     }
 }

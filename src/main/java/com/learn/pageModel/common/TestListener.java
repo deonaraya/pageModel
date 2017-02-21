@@ -1,13 +1,17 @@
 package com.learn.pageModel.common;
 
+import org.openqa.selenium.WebDriver;
 import org.testng.*;
+
+import java.io.IOException;
 
 /**
  * Created by chandrad on 2/19/17.
  */
-public class TestListener implements IExecutionListener, ITestListener {
+public class TestListener implements IExecutionListener, ITestListener, IInvokedMethodListener {
 
     long testStartTime ;
+    WebDriver driver ;
 
 
 
@@ -53,4 +57,39 @@ public class TestListener implements IExecutionListener, ITestListener {
     public void onFinish(ITestContext context) {
 
     }
+
+    public void beforeInvocation(IInvokedMethod method, ITestResult testResult) {
+
+
+        // we will try to put our before method logic here ..
+        // we need to instantiate driver based on Browser value from XML ....
+
+
+        String browserName =method.getTestMethod().getXmlTest().getLocalParameters().get("browser");
+        driver = CommonMethods.getDriverInstance(browserName) ;
+        DriverManager.setWebDriver(driver);
+
+        driver.get("http://automationpractice.com/index.php");
+
+    }
+
+    public void afterInvocation(IInvokedMethod method, ITestResult testResult) {
+
+        if (testResult.getStatus()==ITestResult.FAILURE)
+        {
+            try {
+                CommonMethods.captureScreenshot();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+        }
+
+        if (DriverManager.getDriver() != null) {
+
+            DriverManager.getDriver().quit();
+        }
+    }
+
+
 }
