@@ -58,14 +58,18 @@ public class TestListener implements IExecutionListener, ITestListener, IInvoked
 
     }
 
+
+    // before method
     public void beforeInvocation(IInvokedMethod method, ITestResult testResult) {
 
 
         // we will try to put our before method logic here ..
         // we need to instantiate driver based on Browser value from XML ....
 
+        // not using the @parameter annotation here
 
-        String browserName =method.getTestMethod().getXmlTest().getLocalParameters().get("browser");
+        String browserName = method.getTestMethod().getXmlTest().getLocalParameters().get("browser");
+
         driver = CommonMethods.getDriverInstance(browserName) ;
         DriverManager.setWebDriver(driver);
 
@@ -73,6 +77,8 @@ public class TestListener implements IExecutionListener, ITestListener, IInvoked
 
     }
 
+
+    // after method
     public void afterInvocation(IInvokedMethod method, ITestResult testResult) {
 
         if (testResult.getStatus()==ITestResult.FAILURE)

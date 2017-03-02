@@ -19,18 +19,26 @@ public class ExcelUtil {
 
 
         @DataProvider(name = "register")
-        public static Object[][] testData() {
+        public static Object[][] testDataSignIn() {
             Object[][] arrayObject = getExcelData("src/main/resources/TestData.xls", "Sheet1");
             return arrayObject;
         }
 
+        @DataProvider(name = "20columnData")
+        public static Object[][] testDataSignUP() {
+            Object[][] arrayObject = getExcelData("src/main/resources/TestData.xls", "Sheet0");
+            return arrayObject;
+        }
 
-        public static String[][] getExcelData(String fileName, String sheetName) {
+
+        public static String[][] getExcelData(String filePath, String sheetName) {
             String[][] arrayExcelData = null;
 
             FileInputStream fs = null;
             try {
-                fs = new FileInputStream(fileName);
+                fs = new FileInputStream(filePath);
+
+               // jxl library
 
                 Workbook wb = Workbook.getWorkbook(fs);
                 Sheet sh = wb.getSheet(sheetName);
@@ -48,6 +56,14 @@ public class ExcelUtil {
 
 
                         arrayExcelData[i - 1][j] = sh.getCell(j, i).getContents();
+
+                        // [0][0] = A1
+                        // [0][1] = john
+
+
+
+
+                     //   [3][3] = bar4
 
                         // arrayExcelData[0][0] = sh.getCell(0, 1).getContents();
                         // arrayExcelData[0][1] = sh.getCell(1, 1).getContents();

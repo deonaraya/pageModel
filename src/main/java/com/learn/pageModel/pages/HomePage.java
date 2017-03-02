@@ -106,7 +106,7 @@ public class HomePage extends BasePage {
 
 
     private void waitForPageLoad(){
-        LOGGER.info(" << waiting for HomePage up to load successfully >>");
+        LOGGER.info(" << waiting for HomePage to load successfully >>");
         waitForElement(cataogHeader);
     }
 
